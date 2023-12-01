@@ -35,7 +35,7 @@ def get_numbers_two(lines: list[str]) -> Generator[int, Any, None]:
     _ = []
     for line in lines:
         _ = ["#"] * len(line)
-        
+
         for item in DIGITS.values():
             for occurrences in [m.start() for m in re.finditer(str(item), line)]:
                 _[occurrences] = item
@@ -43,12 +43,6 @@ def get_numbers_two(lines: list[str]) -> Generator[int, Any, None]:
         for item in DIGITS:
             for occurrences in [m.start() for m in re.finditer(item, line)]:
                 _[occurrences] = DIGITS.get(item)
-                print(
-                    f"occurrences: {occurrences: <10}",
-                    f"item: {item: <10}",
-                    f"line: {line: <10}",
-                    f"value: {[value for value in _ if value != "#"]}",
-                )
         yield [value for value in _ if value != "#"]
         _.clear()
 
